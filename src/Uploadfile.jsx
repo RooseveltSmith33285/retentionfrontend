@@ -3,18 +3,7 @@ import React, { useState } from 'react';
 function UploadFile() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState([
-    {
-      name: 'Dawar Ali',
-      email: 'shahg33285@gmail.com',
-      categoryScores: { JobSatisfaction: 8 },  
-      overallScore: 8
-    },
-    {
-      name: 'Ali Bukhari',
-      email: 'lemightyeagle@gmail.com',
-      categoryScores: { JobSatisfaction: 6 },  
-      overallScore: 4
-    },
+   
   ]);
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
