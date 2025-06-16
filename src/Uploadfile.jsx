@@ -74,7 +74,7 @@ function UploadFile() {
       formData.append("employeeFile", file);
       setSameFile(file); 
 
-      const res = await fetch("http://localhost:5000/api/enrich", {
+      const res = await fetch("https://retentiontoolbackend.vercel.app/api/enrich", {
         method: 'POST',
         body: formData
       });
