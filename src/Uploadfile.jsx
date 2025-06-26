@@ -63,7 +63,7 @@ function UploadFile() {
       formData.append("employeeFile", file);
       setSameFile(file); 
 
-      const res = await fetch("https://retentiontoolbackend.vercel.app/api/enrich", {
+      const res = await fetch("https://socialenrichmentbackend.vercel.app/api/enrich", {
         method: 'POST',
         body: formData
       });
@@ -140,7 +140,7 @@ function UploadFile() {
         <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-6">
           <div className="flex flex-row items-center gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-8">
             <div className="w-14 h-14 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-lg md:text-xl lg:text-2xl flex-shrink-0">
-            {totalAverage}%
+            {totalAverage?totalAverage:'0'}%
             </div>
             {/* <ResultsTable>
       <thead>
@@ -204,10 +204,10 @@ function UploadFile() {
                   </div>
                   <div className="col-span-3 flex justify-center items-center gap-2">
                     <div className={`w-10 h-10 ${getRiskColor(employee?.overallScore)} rounded-full flex items-center justify-center text-white font-bold text-sm`}>
-                      {employee?.overallScore}
+                      {employee?.overallScore?employee?.overallScore:'0'}
                     </div>
                     <span className="font-semibold text-gray-700 text-sm">
-                      {employee?.overallScore}%
+                      {employee?.overallScore?employee?.overallScore:'0'}%
                     </span>
                   </div>
                   <div className="col-span-3 text-center">
