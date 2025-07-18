@@ -423,7 +423,7 @@ function UploadFile() {
       formData.append("employeeFile", file);
       setSameFile(file); 
 
-      const res = await fetch("https://socialenrichmentbackend.vercel.app/api/enrich", {
+      const res = await fetch("https://retentionbackend.vercel.app/api/enrich", {
         method: 'POST',
         body: formData
       });
@@ -474,7 +474,7 @@ function UploadFile() {
       const formData = new FormData();
       formData.append("employeeFile", sameFile);
 
-      const res = await fetch("https://socialenrichmentbackend.vercel.app/api/enrich", {
+      const res = await fetch("https://retentionbackend.vercel.app/api/enrich", {
         method: 'POST',
         body: formData
       });
