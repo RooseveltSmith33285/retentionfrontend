@@ -531,7 +531,7 @@ function UploadFile() {
       alert('No data to export');
       return;
     }
-
+  
     // Categories from API response
     const categories = [
       'Work Life Balance',
@@ -539,40 +539,64 @@ function UploadFile() {
       'Financial',
       'Schedule'
     ];
-
-    // Create CSV header
+  
+    // Create CSV header with all employee data properties
     const headers = [
       'Employee Number',
       'Employee Name',
+      'Email',
+      'Last Hire Date',
+      'Job Start Date',
+      'Termination Date',
+      'Termination Reason',
+      'Employment Status',
+      'Date of Birth',
+      'Job Title',
+      'Department',
+      'Facility',
       ...categories,
       'Final Score',
       'Improvement Area',
       'Risk Level',
-      'Possible Improved Score'
+      'Possible Improved Score',
+      'Phone'
     ];
-
-    // Create CSV rows
+  
+    // Create CSV rows with all employee data
     const csvRows = result.map((emp, index) => {
       const improvementArea = getImprovementArea(emp);
       const riskLevel = emp.riskLevel || getRiskLevel(emp.totalScore);
-      const improvedScore = calculateImprovedScore(emp.totalScore);
-      
+      let improvedScore = calculateImprovedScore(emp.totalScore);
+      if(!improvedScore){
+        improvedScore=0;
+      }
       return [
         index + 1, // Employee Number
         emp.name || 'Unknown',
+        emp.email || '',
+        emp.last_hire_date || '',
+        emp.job_start || '',
+        emp.termination_date || '',
+        emp.termination_reason || '',
+        emp.employement_status || '',
+        emp.date_of_birth || '',
+        emp.job_title || '',
+        emp.department || '',
+        emp.facility || '',
         ...categories.map(cat => emp[cat] || 0),
         emp.totalScore || 0,
         improvementArea,
         riskLevel,
-        improvedScore
+        improvedScore,
+        emp.phone
       ];
     });
-
+  
     // Combine headers and rows
     const csvContent = [headers, ...csvRows]
       .map(row => row.map(cell => `"${cell}"`).join(','))
       .join('\n');
-
+  
     // Create and download the file
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
